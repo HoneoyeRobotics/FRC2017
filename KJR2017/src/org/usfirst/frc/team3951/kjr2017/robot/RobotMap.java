@@ -34,23 +34,16 @@ public class RobotMap {
 	public static final int DRIVE_RIGHT_REAR_MOTOR_CANID = 2; //Talon  SRX
 	
 	public static final int BALL_PICKUP_MOTOR_ID = 1; //spark pwm	
-	public static final int BALL_FEEDER_MOTOR_ID = 2;
+	public static final int BALL_FEEDER_MOTOR_ID = 2; //spark pwm
 	public static final int BALL_SHOOTER_MOTOR_CANID = 11; // Talon SRX
 		
-	public static final double GYRO_ROTATE_MAX_SPEED = 0.7;
-	public static final double GYRO_ROTATE_MIN_SPEED = 0.6;
-	public static final double GYRO_ROTATE_SLOW_FACTOR = 60;
+	public static final int GEAR_MOTOR_ID = 3; //spark pwm
+	public static final int GEAR_OPENED_SENSOR_ID = 1;
+	public static final int GEAR_CLOSED_SENSOR_ID = 2;
 	
-	public static final double WHEEL_DIAMETER = 6;
-	public static final int ENCODER_UNITS_PER_REVOLUTION = 4096;
-	public static final double DRIVE_DISTANCE_Y_FACTOR = 0;
-	public static final double DRIVE_DISTANCE_SPEED = 0.6; 
-	public static final double ROTATE_DEGREES_DEADBAND = 8;
+	public static final int WINCH_MOTOR1_ID = 4; //spark pwm
+	public static final int WINCH_MOTOR2_ID = 5; //spark pwm
 		
-	public enum Direction {
-		 LEFT,
-		 RIGHT
-		}	
 	
 }
 

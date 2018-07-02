@@ -14,6 +14,8 @@ import org.usfirst.frc.team3951.kjr2017.robot.commands.GyroReset;
 import org.usfirst.frc.team3951.kjr2017.robot.subsystems.BallPickup;
 import org.usfirst.frc.team3951.kjr2017.robot.subsystems.BallShooter;
 import org.usfirst.frc.team3951.kjr2017.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3951.kjr2017.robot.subsystems.Gear;
+import org.usfirst.frc.team3951.kjr2017.robot.subsystems.Winch;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -37,7 +39,8 @@ public class Robot extends TimedRobot {
 	public static Drivetrain drivetrain;
 	public static BallShooter ballshooter;
 	public static BallPickup ballpickup;
-	
+	public static Winch winch;
+	public static Gear gear;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -49,6 +52,8 @@ public class Robot extends TimedRobot {
 		drivetrain = new Drivetrain();		
 		ballshooter = new BallShooter();
 		ballpickup = new BallPickup();
+		gear = new Gear();
+		winch = new Winch();
 		CameraServer.getInstance().startAutomaticCapture();
 		//initialize interface second
 		oi = new OI();	
@@ -63,6 +68,8 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData(drivetrain);
 		SmartDashboard.putData(ballshooter);
 		SmartDashboard.putData(ballpickup);
+		SmartDashboard.putData(gear);
+		SmartDashboard.putData(winch);
 		SmartDashboard.putNumber("Drive Forward Speed", 0);
 		SmartDashboard.putNumber("Turn Speed", 0);
 		SmartDashboard.putNumber("Gyro Angle", 0);
@@ -73,7 +80,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Feed Balls for 2 seconds", new PickUpBalls(2));
 		SmartDashboard.putData("Shoot Balls 2 seconds", new ShootBalls(2));
 		SmartDashboard.putData("Gyro Reset", new GyroReset());
-		
+		SmartDashboard.putString("Gear Mechanism is ", "closed");
 	}
 
 	@Override

@@ -3,15 +3,8 @@ package org.usfirst.frc.team3951.kjr2017.robot.subsystems;
 import org.usfirst.frc.team3951.kjr2017.robot.Robot;
 import org.usfirst.frc.team3951.kjr2017.robot.RobotMap;
 import org.usfirst.frc.team3951.kjr2017.robot.commands.ArcadeDriveWithJoystick;
-
-import com.ctre.phoenix.CANifier;
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,27 +31,12 @@ public class Drivetrain extends Subsystem {
 		addChild("Rear Left Motor", rearLeftMotor);
 		addChild("Front Right Motor", frontRightMotor);
 		addChild("Rear Right Motor", rearRightMotor);
-		addChild("Gyro", gyro);
-		
-		//frontLeftMotor.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
-		//frontLeftMotor.setSensorPhase(false);
-		
-		//frontRightMotor.configSelectedFeedbackSensor(com.ctre.phoenix.motorcontrol.FeedbackDevice.QuadEncoder, 0, 0);
-		//frontRightMotor.setSensorPhase(false);
-		//leftMotorGroup.setInverted(true);
+		addChild("Gyro", gyro);			
 		drivetrain = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
-				//drivetrain.setSafetyEnabled(true);
-
 		drivingReversed = false;
 		drivetrain.setExpiration(0.1);
 		drivetrain.setMaxOutput(1.0);
-		drivetrain.setSafetyEnabled(false);
-
-		
-				
-		//not sure if we need follow, as we have speed controller groups.
-		//rearLeftMotor.follow(frontLeftMotor);		
-		//rearRightMotor.follow(frontRightMotor);
+		drivetrain.setSafetyEnabled(false);	
 	}
 	
 	public boolean isDriveReversed() {

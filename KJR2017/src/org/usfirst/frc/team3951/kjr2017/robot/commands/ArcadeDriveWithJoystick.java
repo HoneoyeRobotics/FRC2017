@@ -2,8 +2,6 @@ package org.usfirst.frc.team3951.kjr2017.robot.commands;
 
 import org.usfirst.frc.team3951.kjr2017.robot.OI;
 import org.usfirst.frc.team3951.kjr2017.robot.Robot;
-import org.usfirst.frc.team3951.kjr2017.robot.subsystems.Drivetrain;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -25,14 +23,14 @@ public class ArcadeDriveWithJoystick extends  Command {
 		double leftButton = joystick.getRawAxis(OI.DRIVER_ROTATE_LEFT_AXIS);
 		double rightButton = joystick.getRawAxis(OI.DRIVER_ROTATE_RIGHT_AXIS);		
 		double turnSpeed = rightButton - leftButton;
-		if(Robot.drivetrain.isDriveReversed())
-			turnSpeed *= -1;
+		/*if(Robot.drivetrain.isDriveReversed())
+			turnSpeed *= -1;*/
 			
 		
-		if(joystick.getRawButton(Robot.oi.SLOW_SPEED_BUTTON)) {
+		/*if(joystick.getRawButton(Robot.oi.SLOW_SPEED_BUTTON)) {
 			forwardSpeed *= 0.5;
 			turnSpeed *= 0.5;
-		}
+		}*/
 		//WRITE MOTOR VALUES TO NETWORK TABLES WITH ITERATION, Robot.recordCounter;
 		SmartDashboard.putNumber("Drive Forward Speed", forwardSpeed);
 		SmartDashboard.putNumber("Turn Speed", turnSpeed);

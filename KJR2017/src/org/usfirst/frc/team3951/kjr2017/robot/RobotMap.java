@@ -7,17 +7,6 @@
 
 package org.usfirst.frc.team3951.kjr2017.robot;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
-import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PWM;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -61,16 +50,7 @@ public class RobotMap {
 	public enum Direction {
 		 LEFT,
 		 RIGHT
-		}
-	
-	
-	
-	public static void init() {
-		//constructors for motors/sensors
-		
-		
-		
-	}
+		}	
 	
 }
 

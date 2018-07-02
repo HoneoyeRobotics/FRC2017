@@ -8,8 +8,9 @@
 package org.usfirst.frc.team3951.kjr2017.robot;
 
 
+import org.usfirst.frc.team3951.kjr2017.robot.commands.ShootBalls;
+
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -43,12 +44,8 @@ public class OI {
 	}
 	
 	
-	public OI() {	
-		
-
-			
-	
-		
+	public OI() {			
+		new JoystickButton(driverJoystick, BALL_SHOOTER_BUTTON).whileHeld(new ShootBalls());					
 	}
 	
 }

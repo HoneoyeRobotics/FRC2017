@@ -1,11 +1,6 @@
 package org.usfirst.frc.team3951.kjr2017.robot.commands;
 
-import org.usfirst.frc.team3951.kjr2017.robot.OI;
 import org.usfirst.frc.team3951.kjr2017.robot.Robot;
-import org.usfirst.frc.team3951.kjr2017.robot.RobotMap;
-import org.usfirst.frc.team3951.kjr2017.robot.subsystems.Drivetrain;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 

@@ -28,10 +28,10 @@ public class RobotMap {
 	
 	
 	//define IDs for the drive subsystem
-	public static final int DRIVE_LEFT_FRONT_MOTOR_CANID = 3; // Talon SRX
-	public static final int DRIVE_LEFT_REAR_MOTOR_CANID = 4; //Talon SRX
-	public static final int DRIVE_RIGHT_FRONT_MOTOR_CANID = 1;	//Talon SRX
-	public static final int DRIVE_RIGHT_REAR_MOTOR_CANID = 2; //Talon  SRX
+	public static final int DRIVE_LEFT_1_MOTOR_CANID = 3; // Talon SRX
+	public static final int DRIVE_LEFT_2_MOTOR_CANID = 4; //Talon SRX
+	public static final int DRIVE_RIGHT_1_MOTOR_CANID = 1;	//Talon SRX
+	public static final int DRIVE_RIGHT_2_MOTOR_CANID = 2; //Talon  SRX
 	
 	public static final int BALL_PICKUP_MOTOR_ID = 1; //spark pwm	
 	public static final int BALL_FEEDER_MOTOR_ID = 2; //spark pwm

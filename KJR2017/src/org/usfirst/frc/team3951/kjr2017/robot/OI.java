@@ -8,7 +8,9 @@
 package org.usfirst.frc.team3951.kjr2017.robot;
 
 
+import org.usfirst.frc.team3951.kjr2017.robot.commands.ReverseDirection;
 import org.usfirst.frc.team3951.kjr2017.robot.commands.ShootBalls;
+import org.usfirst.frc.team3951.kjr2017.robot.commands.ToggleSlowSpeed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -26,9 +28,11 @@ public class OI {
 	public static final int DRIVER_FORWARD_AXIS = 1;
 	public static final int DRIVER_ROTATE_LEFT_AXIS = 2;
 	public static final int DRIVER_ROTATE_RIGHT_AXIS = 3;	
-	public static final int REVERSE_DRIVE_BUTTON = 5; //r bumper
-	public static final int SLOW_SPEED_BUTTON = 2; //x button
-	public static final int BALL_SHOOTER_BUTTON = 1; //b button
+	public static final int REVERSE_DRIVE_BUTTON = 7; //"back" button on left
+	public static final int SLOW_SPEED_TOGGLE = 8; // start button on the right
+	public static final int SLOW_SPEED_BUTTON = 2; //b button
+	public static final int BALL_SHOOTER_BUTTON = 1; //a button
+	public static final int DRIVER_TURN_AXIS = 0;
 	
 	//co-pilot joystick
 	public static final int COPILOT_JOYSTICK_PORT = 1;	
@@ -46,6 +50,8 @@ public class OI {
 	
 	public OI() {			
 		new JoystickButton(driverJoystick, BALL_SHOOTER_BUTTON).whileHeld(new ShootBalls());					
+		new JoystickButton(driverJoystick, REVERSE_DRIVE_BUTTON).whenPressed(new ReverseDirection());;
+		new JoystickButton(driverJoystick, SLOW_SPEED_TOGGLE).whenPressed(new ToggleSlowSpeed());
 	}
 	
 }

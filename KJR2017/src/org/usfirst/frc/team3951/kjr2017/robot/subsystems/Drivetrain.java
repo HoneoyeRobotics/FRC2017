@@ -9,21 +9,23 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drivetrain extends Subsystem {
 
 	
-	private WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_FRONT_MOTOR_CANID);
-	private WPI_TalonSRX rearLeftMotor = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_REAR_MOTOR_CANID);
+	private WPI_TalonSRX frontLeftMotor = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_1_MOTOR_CANID);
+	private WPI_TalonSRX rearLeftMotor = new WPI_TalonSRX(RobotMap.DRIVE_LEFT_2_MOTOR_CANID);
 	private SpeedControllerGroup leftMotorGroup = new SpeedControllerGroup(frontLeftMotor, rearLeftMotor);
 	
-	private WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_FRONT_MOTOR_CANID);
-	private WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_REAR_MOTOR_CANID);
+	private WPI_TalonSRX frontRightMotor = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_1_MOTOR_CANID);
+	private WPI_TalonSRX rearRightMotor = new WPI_TalonSRX(RobotMap.DRIVE_RIGHT_2_MOTOR_CANID);
 	private SpeedControllerGroup rightMotorGroup = new SpeedControllerGroup(frontRightMotor, rearRightMotor);
 	
 	private DifferentialDrive drivetrain;
 	private ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);	
 	private boolean drivingReversed;
+	private double drivingModifier;
 	
 	public Drivetrain() {
 		super("Drivetrain");		
@@ -32,11 +34,17 @@ public class Drivetrain extends Subsystem {
 		addChild("Front Right Motor", frontRightMotor);
 		addChild("Rear Right Motor", rearRightMotor);
 		addChild("Gyro", gyro);			
+		frontRightMotor.setInverted(true);
+		rearRightMotor.setInverted(true);
 		drivetrain = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
 		drivingReversed = false;
 		drivetrain.setExpiration(0.1);
 		drivetrain.setMaxOutput(1.0);
-		drivetrain.setSafetyEnabled(false);	
+		drivetrain.setSafetyEnabled(false);
+		drivetrain.setDeadband(0.02);
+		drivingModifier = 1;
+
+		SmartDashboard.putNumber("Speed Mod", drivingModifier);
 	}
 	
 	public boolean isDriveReversed() {
@@ -59,7 +67,19 @@ public class Drivetrain extends Subsystem {
 		return frontRightMotor.getSelectedSensorVelocity(0);
 	}
 
+	public void setDrivingModifier(double modifier)
+	{
+
+		drivingModifier = modifier;
+
+		SmartDashboard.putNumber("Speed Mod", drivingModifier);
+	}
 	
+	public void setFullSpeed() {
+		drivingModifier = 1;
+
+		SmartDashboard.putNumber("Speed Mod", drivingModifier);
+	}
 	public double getGyroRate() {
 		return gyro.getRate();
 	}
@@ -74,7 +94,14 @@ public class Drivetrain extends Subsystem {
 	
 
 	public void arcadeDrive(double xSpeed,double zRotation) {		
-		drivetrain.arcadeDrive( zRotation, xSpeed);
+		SmartDashboard.putNumber("xSpeed", xSpeed);
+		SmartDashboard.putNumber("zRotation", zRotation);
+		//not sure why this is working?
+		
+		zRotation *= drivingModifier;
+		xSpeed = xSpeed * drivingModifier;
+		//drivetrain.arcadeDrive( zRotation, xSpeed);
+		drivetrain.arcadeDrive( xSpeed, zRotation);
 	}	
 	
 	public void stop() {
